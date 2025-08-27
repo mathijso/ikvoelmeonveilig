@@ -132,64 +132,69 @@
                             Zorg ervoor dat dit je exacte fysieke locatie is. Dit is cruciaal voor de hulpverlening.
                         </p>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                            <div>
-                                <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
-                                    Breedtegraad
-                                </label>
-                                <input 
-                                    type="number" 
-                                    x-model="latitude" 
-                                    step="any"
-                                    class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                                    placeholder="52.3676"
-                                >
+                        <div class="space-y-4 mb-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
+                                        Breedtegraad
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        x-model="latitude" 
+                                        step="any"
+                                        class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                                        placeholder="52.3676"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
+                                        Lengtegraad
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        x-model="longitude" 
+                                        step="any"
+                                        class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                                        placeholder="4.9041"
+                                    >
+                                </div>
                             </div>
+                            
                             <div>
                                 <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
-                                    Lengtegraad
+                                    Adres (optioneel)
                                 </label>
                                 <input 
-                                    type="number" 
-                                    x-model="longitude" 
-                                    step="any"
-                                    class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                                    placeholder="4.9041"
+                                    type="text" 
+                                    x-model="locationAddress" 
+                                    class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm"
+                                    placeholder="Straat, huisnummer, plaats"
                                 >
                             </div>
                         </div>
                         
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
-                                Adres (optioneel)
-                            </label>
-                            <input 
-                                type="text" 
-                                x-model="locationAddress" 
-                                class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                                placeholder="Straat, huisnummer, plaats"
-                            >
-                        </div>
-                        
-                        <div class="flex space-x-3">
+                        <div class="space-y-3">
                             <button 
                                 @click="getCurrentLocation()"
-                                class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                class="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg transition-colors text-sm font-medium"
                             >
                                 Huidige locatie ophalen
                             </button>
-                            <button 
-                                @click="confirmLocation()"
-                                class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
-                            >
-                                Locatie bevestigen
-                            </button>
-                            <button 
-                                @click="showLocationForm = false"
-                                class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors text-sm"
-                            >
-                                Annuleren
-                            </button>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button 
+                                    @click="confirmLocation()"
+                                    class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors text-sm font-medium"
+                                >
+                                    Locatie bevestigen
+                                </button>
+                                <button 
+                                    @click="showLocationForm = false"
+                                    class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors text-sm font-medium"
+                                >
+                                    Annuleren
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
