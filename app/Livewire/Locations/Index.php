@@ -9,7 +9,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Layout('components.layouts.app')]class Index extends Component
+#[Layout('components.layouts.app')]
+class Index extends Component
 {
     use WithPagination;
 
@@ -77,9 +78,15 @@ use Livewire\WithPagination;
 
     public function save()
     {
-        // Custom validation for postcode or coordinates
-        if (empty($this->postcode) && (empty($this->latitude) || empty($this->longitude))) {
-            $this->addError('postcode', 'Vul een postcode in of voer coördinaten handmatig in.');
+        // Validate required fields
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'postcode' => 'nullable|string|max:10',
+        ]);
+
+        // For new locations, postcode is required
+        if (!$this->editingLocation && empty($this->postcode)) {
+            $this->addError('postcode', 'Vul een postcode in voor de nieuwe locatie.');
             return;
         }
 
@@ -110,7 +117,7 @@ use Livewire\WithPagination;
 
         // Validate coordinates are present
         if (empty($this->latitude) || empty($this->longitude)) {
-            $this->addError('latitude', 'Coördinaten zijn vereist.');
+            $this->addError('latitude', 'Coördinaten zijn vereist. Vul een geldige postcode in.');
             return;
         }
 
@@ -119,33 +126,37 @@ use Livewire\WithPagination;
             \Illuminate\Support\Facades\Auth::user()->locations()->update(['is_primary' => false]);
         }
 
-        if ($this->editingLocation) {
-            // Update existing location
-            $this->editingLocation->update([
-                'name' => $this->name,
-                'address' => $this->address,
-                'latitude' => $this->latitude,
-                'longitude' => $this->longitude,
-                'is_primary' => $this->is_primary,
-                'is_active' => $this->is_active,
-            ]);
-            
-            $this->dispatch('location-updated', message: 'Locatie succesvol bijgewerkt!');
-        } else {
-            // Create new location
-            \Illuminate\Support\Facades\Auth::user()->locations()->create([
-                'name' => $this->name,
-                'address' => $this->address,
-                'latitude' => $this->latitude,
-                'longitude' => $this->longitude,
-                'is_primary' => $this->is_primary,
-                'is_active' => $this->is_active,
-            ]);
-            
-            $this->dispatch('location-created', message: 'Locatie succesvol toegevoegd!');
-        }
+        try {
+            if ($this->editingLocation) {
+                // Update existing location
+                $this->editingLocation->update([
+                    'name' => $this->name,
+                    'address' => $this->address,
+                    'latitude' => $this->latitude,
+                    'longitude' => $this->longitude,
+                    'is_primary' => $this->is_primary,
+                    'is_active' => $this->is_active,
+                ]);
+                
+                $this->dispatch('location-updated', message: 'Locatie succesvol bijgewerkt!');
+            } else {
+                // Create new location
+                \Illuminate\Support\Facades\Auth::user()->locations()->create([
+                    'name' => $this->name,
+                    'address' => $this->address,
+                    'latitude' => $this->latitude,
+                    'longitude' => $this->longitude,
+                    'is_primary' => $this->is_primary,
+                    'is_active' => $this->is_active,
+                ]);
+                
+                $this->dispatch('location-created', message: 'Locatie succesvol toegevoegd!');
+            }
 
-        $this->resetForm();
+            $this->resetForm();
+        } catch (\Exception $e) {
+            $this->addError('general', 'Er is een fout opgetreden bij het opslaan van de locatie. Probeer het opnieuw.');
+        }
     }
 
     public function delete(UserLocation $location)
@@ -210,7 +221,7 @@ use Livewire\WithPagination;
             $this->address = $coordinates['address'];
         }
 
-        $this->dispatch('postcode-looked-up', message: 'Postcode gevonden! Coördinaten zijn ingevuld.');
+        $this->dispatch('postcode-looked-up', message: 'Postcode gevonden! Locatie gegevens zijn ingevuld.');
     }
 
     public function render()

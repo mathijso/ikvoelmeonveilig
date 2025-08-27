@@ -112,11 +112,9 @@ class User extends Authenticatable
 
         return static::whereHas('locations', function ($query) use ($latitude, $longitude, $radiusKm, $earthRadius) {
             $query->active()
-                ->selectRaw("
-                    *,
-                    ({$earthRadius} * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
-                ", [$latitude, $longitude, $latitude])
-                ->having('distance', '<=', $radiusKm);
+                ->whereRaw("
+                    ({$earthRadius} * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) <= ?
+                ", [$latitude, $longitude, $latitude, $radiusKm]);
         });
     }
 
@@ -139,11 +137,9 @@ class User extends Authenticatable
                 ->where('id', '!=', $this->id)
                 ->whereHas('locations', function ($query) use ($location, $radiusKm) {
                     $query->active()
-                        ->selectRaw("
-                            *,
-                            (6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
-                        ", [$location->latitude, $location->longitude, $location->latitude])
-                        ->having('distance', '<=', $radiusKm);
+                        ->whereRaw("
+                            (6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) <= ?
+                        ", [$location->latitude, $location->longitude, $location->latitude, $radiusKm]);
                 })
                 ->get();
             

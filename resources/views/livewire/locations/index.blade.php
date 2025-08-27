@@ -27,6 +27,13 @@
             </h2>
             
             <form wire:submit="save" class="space-y-6">
+                <!-- General Error Message -->
+                @error('general')
+                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                        <p class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</p>
+                    </div>
+                @enderror
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Name -->
                     <div>
@@ -48,21 +55,24 @@
                     <!-- Postcode -->
                     <div>
                         <label for="postcode" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Postcode
+                            Postcode {{ !$editingLocation ? '*' : '' }}
                         </label>
                         <div class="flex space-x-2">
                             <input 
                                 type="text" 
                                 id="postcode"
-                                wire:model="postcode"
+                                wire:model.live.debounce.500ms="postcode"
+                                wire:change="lookupPostcode"
                                 class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                                 placeholder="1234AB"
                                 maxlength="6"
+                                {{ $editingLocation ? 'disabled' : '' }}
                             >
                             <button 
                                 type="button"
                                 wire:click="lookupPostcode"
-                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                                class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                                {{ $editingLocation ? 'disabled' : '' }}
                             >
                                 Zoeken
                             </button>
@@ -71,83 +81,51 @@
                             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                         @enderror
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                            Voer een Nederlandse postcode in om automatisch coördinaten op te halen
+                            {{ $editingLocation ? 'Postcode kan niet worden gewijzigd voor bestaande locaties' : 'Voer een Nederlandse postcode in om automatisch coördinaten op te halen' }}
                         </p>
                     </div>
 
-                    <!-- Address -->
-                    <div>
-                        <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <!-- Address (Read-only display) -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                             Adres
                         </label>
-                        <input 
-                            type="text" 
-                            id="address"
-                            wire:model="address"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                            placeholder="Straat, huisnummer, plaats"
-                        >
-                        @error('address') 
-                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                        <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300">
+                            {{ $address ?: 'Wordt automatisch ingevuld op basis van postcode' }}
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            Adres wordt automatisch opgehaald op basis van de postcode
+                        </p>
                     </div>
 
-                    <!-- Coordinates Section -->
+                    <!-- Coordinates Section (Read-only display) -->
                     <div class="md:col-span-2">
-                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Coördinaten</h3>
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Locatie Gegevens</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Latitude -->
                             <div>
-                                <label for="latitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Breedtegraad
                                 </label>
-                                <input 
-                                    type="number" 
-                                    id="latitude"
-                                    wire:model="latitude"
-                                    step="any"
-                                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                                    placeholder="52.3676"
-                                >
-                                @error('latitude') 
-                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                                @enderror
+                                <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300">
+                                    {{ $latitude ? number_format((float)$latitude, 6) : 'Wordt automatisch ingevuld' }}
+                                </div>
                             </div>
 
                             <!-- Longitude -->
                             <div>
-                                <label for="longitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Lengtegraad
                                 </label>
-                                <input 
-                                    type="number" 
-                                    id="longitude"
-                                    wire:model="longitude"
-                                    step="any"
-                                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                                    placeholder="4.9041"
-                                >
-                                @error('longitude') 
-                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                                @enderror
+                                <div class="w-full px-3 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300">
+                                    {{ $longitude ? number_format((float)$longitude, 6) : 'Wordt automatisch ingevuld' }}
+                                </div>
                             </div>
                         </div>
                         <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                            Coördinaten worden automatisch ingevuld bij het invoeren van een postcode, of voer ze handmatig in
+                            Coördinaten worden automatisch opgehaald op basis van de postcode
                         </p>
                     </div>
-                </div>
-
-                <!-- Get Current Location Button -->
-                <div class="flex justify-center">
-                    <button 
-                        type="button"
-                        onclick="getCurrentLocation()"
-                        class="inline-flex items-center px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
-                    >
-                        📍 Huidige Locatie Ophalen
-                    </button>
-                </div>
                 </div>
 
                 <!-- Options -->
@@ -182,7 +160,7 @@
                     </button>
                     <button 
                         type="submit"
-                        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
                     >
                         {{ $editingLocation ? 'Bijwerken' : 'Toevoegen' }}
                     </button>
@@ -336,37 +314,4 @@
     >
         <span x-text="message"></span>
     </div>
-
-    <!-- JavaScript for getting current location -->
-    <script>
-        function getCurrentLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    function(position) {
-                        // Update the form fields with current location
-                        @this.set('latitude', position.coords.latitude);
-                        @this.set('longitude', position.coords.longitude);
-                        
-                        // Show success message
-                        const event = new CustomEvent('location-detected', {
-                            detail: { message: 'Huidige locatie opgehaald!' }
-                        });
-                        window.dispatchEvent(event);
-                    },
-                    function(error) {
-                        // Show error message
-                        alert('Kon je huidige locatie niet ophalen. Controleer je locatie-instellingen.');
-                        console.error('Geolocation error:', error);
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 60000
-                    }
-                );
-            } else {
-                alert('Geolocatie wordt niet ondersteund door je browser.');
-            }
-        }
-    </script>
 </div>

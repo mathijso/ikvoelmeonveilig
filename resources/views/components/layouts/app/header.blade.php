@@ -28,7 +28,7 @@
                 <div class="flex justify-between items-center h-14 sm:h-16">
                     <!-- Logo and Title -->
                     <div class="flex items-center min-w-0">
-                        <a href="{{ route('home') }}" class="text-lg sm:text-xl font-bold text-red-600 dark:text-red-400 truncate">
+                        <a href="{{ route('home') }}" class="logo text-lg sm:text-xl font-bold text-red-600 dark:text-red-400 truncate">
                             Veiligheidsnetwerk
                         </a>
                     </div>
