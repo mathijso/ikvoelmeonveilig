@@ -181,11 +181,8 @@
         <div class="bg-red-600 dark:bg-red-700 py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-                    Klaar om je veiliger te voelen?
+                    Ik ben in gevaar
                 </h2>
-                <p class="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-                    Sluit je aan bij duizenden anderen die al gebruik maken van ons veiligheidsnetwerk
-                </p>
                 
                 @auth
                     <a href="{{ route('emergency.index') }}" class="inline-flex items-center px-8 py-4 bg-white text-red-600 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-lg">

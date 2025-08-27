@@ -157,4 +157,12 @@ class User extends Authenticatable
     {
         return \App\Models\UserLocation::where('is_active', true)->count();
     }
+
+    /**
+     * Check if the user is an admin
+     */
+    public function isAdmin(): bool   
+    {
+        return $this->email === 'mathijso@gmail.com';
+    }
 }

@@ -44,6 +44,11 @@
                         <a href="{{ route('emergency.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 sm:px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap {{ request()->routeIs('emergency.*') ? 'text-red-600 dark:text-red-400' : '' }}">
                             Noodmelding
                         </a>
+                        @if(auth()->user()->isAdmin())
+                        <a href="{{ route('admin.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 sm:px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap {{ request()->routeIs('admin.*') ? 'text-red-600 dark:text-red-400' : '' }}">
+                            Admin
+                        </a>
+                        @endif
                     </nav>
 
                     <!-- Emergency Button (Mobile) -->
@@ -112,6 +117,9 @@
                 </a>
                 <a href="{{ route('emergency.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
                     Noodmelding
+                </a>
+                <a href="{{ route('admin.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                    Admin
                 </a>
                 <a href="{{ route('settings.profile') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
                     Instellingen

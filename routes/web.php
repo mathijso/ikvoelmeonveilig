@@ -35,6 +35,11 @@ Route::middleware(['auth'])->group(function () {
     
     // Locations routes
     Route::get('locations', \App\Livewire\Locations\Index::class)->name('locations.index');
+    
+    // Admin routes
+    
+        Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+    
 });
 
 require __DIR__.'/auth.php';
