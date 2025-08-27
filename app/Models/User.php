@@ -104,6 +104,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Get feedback submitted by this user
+     */
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    /**
+     * Get votes made by this user
+     */
+    public function feedbackVotes()
+    {
+        return $this->hasMany(FeedbackVote::class);
+    }
+
+    /**
      * Get users within a certain radius of given coordinates based on their locations
      */
     public static function withinRadius($latitude, $longitude, $radiusKm = 5)

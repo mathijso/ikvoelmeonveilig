@@ -36,9 +36,11 @@ Route::middleware(['auth'])->group(function () {
     // Locations routes
     Route::get('locations', \App\Livewire\Locations\Index::class)->name('locations.index');
     
-    // Admin routes
+    // Feedback routes
+    Route::get('feedback', \App\Livewire\Feedback\Index::class)->name('feedback.index');
     
-        Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+    // Admin routes
+    Route::get('admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     
 });
 

@@ -41,6 +41,9 @@
                         <a href="{{ route('locations.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 sm:px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap {{ request()->routeIs('locations.*') ? 'text-red-600 dark:text-red-400' : '' }}">
                             Locaties
                         </a>
+                        <a href="{{ route('feedback.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 sm:px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap {{ request()->routeIs('feedback.*') ? 'text-red-600 dark:text-red-400' : '' }}">
+                            Feedback
+                        </a>
                         <a href="{{ route('emergency.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-2 sm:px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap {{ request()->routeIs('emergency.*') ? 'text-red-600 dark:text-red-400' : '' }}">
                             Noodmelding
                         </a>
@@ -114,6 +117,9 @@
                 </a>
                 <a href="{{ route('locations.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
                     Locaties
+                </a>
+                <a href="{{ route('feedback.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                    Feedback
                 </a>
                 <a href="{{ route('emergency.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
                     Noodmelding
