@@ -68,7 +68,7 @@
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 Status Overzicht
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4">
                     <div class="flex items-center">
                         <span class="text-green-600 dark:text-green-400 text-2xl mr-3">✅</span>
@@ -87,7 +87,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg p-4">
+                    <div class="flex items-center">
+                        <span class="text-purple-600 dark:text-purple-400 text-2xl mr-3">📍</span>
+                        <div>
+                            <h3 class="font-semibold text-purple-800 dark:text-purple-200">Locaties</h3>
+                            <p class="text-purple-700 dark:text-purple-300 text-sm">{{ Auth::user()->locations()->count() }} locatie(s) ingesteld</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Location Info -->
+        @if(Auth::user()->locations()->count() == 0)
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700 rounded-lg p-6 mt-8">
+                <div class="text-center">
+                    <span class="text-4xl mb-4 block">⚠️</span>
+                    <h3 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-2">
+                        Voeg je eerste locatie toe
+                    </h3>
+                    <p class="text-yellow-700 dark:text-yellow-300 mb-4">
+                        Om meldingen te kunnen ontvangen van mensen in je buurt, moet je eerst locaties toevoegen zoals thuis, werk of andere belangrijke plekken.
+                    </p>
+                    <a href="{{ route('locations.index') }}" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                        Locaties Toevoegen
+                    </a>
+                </div>
+            </div>
+        @endif
     </div>
 </x-layouts.app>

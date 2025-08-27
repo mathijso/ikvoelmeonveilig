@@ -16,10 +16,13 @@ class EmergencyNotificationService
     public function sendNotifications(EmergencyAlert $alert, $radiusKm = 3)
     {
         try {
-            // Get users within radius who are available for help
+            // Get users within radius who are available for help and have active locations
             $nearbyUsers = User::where('is_available_for_help', true)
                 ->where('receive_notifications', true)
                 ->where('id', '!=', $alert->user_id) // Don't notify the person who sent the alert
+                ->whereHas('locations', function ($query) {
+                    $query->active();
+                })
                 ->get()
                 ->filter(function ($user) use ($alert, $radiusKm) {
                     // Check if user has any locations within radius

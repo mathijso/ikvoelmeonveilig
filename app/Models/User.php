@@ -104,17 +104,19 @@ class User extends Authenticatable
     }
 
     /**
-     * Get users within a certain radius of given coordinates
+     * Get users within a certain radius of given coordinates based on their locations
      */
     public static function withinRadius($latitude, $longitude, $radiusKm = 3)
     {
         $earthRadius = 6371; // Earth's radius in kilometers
 
-        return static::selectRaw("
-            *,
-            ({$earthRadius} * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
-        ", [$latitude, $longitude, $latitude])
-        ->having('distance', '<=', $radiusKm)
-        ->orderBy('distance');
+        return static::whereHas('locations', function ($query) use ($latitude, $longitude, $radiusKm, $earthRadius) {
+            $query->active()
+                ->selectRaw("
+                    *,
+                    ({$earthRadius} * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
+                ", [$latitude, $longitude, $latitude])
+                ->having('distance', '<=', $radiusKm);
+        });
     }
 }

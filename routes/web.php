@@ -24,10 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     
-    // Locations routes (placeholder for now)
-    Route::get('locations', function () {
-        return view('locations.index');
-    })->name('locations.index');
+    // Locations routes
+    Route::get('locations', \App\Livewire\Locations\Index::class)->name('locations.index');
 });
 
 require __DIR__.'/auth.php';
