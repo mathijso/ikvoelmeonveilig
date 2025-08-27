@@ -3,13 +3,13 @@
 namespace App\Livewire\Locations;
 
 use App\Models\UserLocation;
+use App\Services\PostcodeService;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Layout('components.layouts.app')]
-class Index extends Component
+#[Layout('components.layouts.app')]class Index extends Component
 {
     use WithPagination;
 
@@ -19,10 +19,13 @@ class Index extends Component
     #[Validate('nullable|string|max:255')]
     public string $address = '';
 
-    #[Validate('required|numeric|between:-90,90')]
+    #[Validate('nullable|string|max:10')]
+    public string $postcode = '';
+
+    #[Validate('nullable|numeric|between:-90,90')]
     public string $latitude = '';
 
-    #[Validate('required|numeric|between:-180,180')]
+    #[Validate('nullable|numeric|between:-180,180')]
     public string $longitude = '';
 
     public bool $is_primary = false;
@@ -39,6 +42,7 @@ class Index extends Component
     {
         $this->name = '';
         $this->address = '';
+        $this->postcode = '';
         $this->latitude = '';
         $this->longitude = '';
         $this->is_primary = false;
@@ -58,6 +62,7 @@ class Index extends Component
         $this->editingLocation = $location;
         $this->name = $location->name;
         $this->address = $location->address ?? '';
+        $this->postcode = '';
         $this->latitude = (string) $location->latitude;
         $this->longitude = (string) $location->longitude;
         $this->is_primary = $location->is_primary;
@@ -72,7 +77,42 @@ class Index extends Component
 
     public function save()
     {
-        $this->validate();
+        // Custom validation for postcode or coordinates
+        if (empty($this->postcode) && (empty($this->latitude) || empty($this->longitude))) {
+            $this->addError('postcode', 'Vul een postcode in of voer coördinaten handmatig in.');
+            return;
+        }
+
+        // If postcode is provided, get coordinates
+        if (!empty($this->postcode)) {
+            $postcodeService = new PostcodeService();
+            
+            if (!$postcodeService->isValidDutchPostcode($this->postcode)) {
+                $this->addError('postcode', 'Voer een geldige Nederlandse postcode in (bijv. 1234AB).');
+                return;
+            }
+
+            $coordinates = $postcodeService->getCoordinatesForPostcode($this->postcode);
+            
+            if (!$coordinates) {
+                $this->addError('postcode', 'Kon geen coördinaten vinden voor deze postcode. Controleer of de postcode correct is.');
+                return;
+            }
+
+            $this->latitude = (string) $coordinates['latitude'];
+            $this->longitude = (string) $coordinates['longitude'];
+            
+            // Update address if not provided
+            if (empty($this->address) && isset($coordinates['address'])) {
+                $this->address = $coordinates['address'];
+            }
+        }
+
+        // Validate coordinates are present
+        if (empty($this->latitude) || empty($this->longitude)) {
+            $this->addError('latitude', 'Coördinaten zijn vereist.');
+            return;
+        }
 
         // If this is a primary location, unset other primary locations
         if ($this->is_primary) {
@@ -139,6 +179,38 @@ class Index extends Component
             $this->longitude = request()->header('X-Longitude');
             $this->dispatch('location-detected');
         }
+    }
+
+    public function lookupPostcode()
+    {
+        if (empty($this->postcode)) {
+            $this->addError('postcode', 'Voer een postcode in.');
+            return;
+        }
+
+        $postcodeService = new PostcodeService();
+        
+        if (!$postcodeService->isValidDutchPostcode($this->postcode)) {
+            $this->addError('postcode', 'Voer een geldige Nederlandse postcode in (bijv. 1234AB).');
+            return;
+        }
+
+        $coordinates = $postcodeService->getCoordinatesForPostcode($this->postcode);
+        
+        if (!$coordinates) {
+            $this->addError('postcode', 'Kon geen coördinaten vinden voor deze postcode. Controleer of de postcode correct is.');
+            return;
+        }
+
+        $this->latitude = (string) $coordinates['latitude'];
+        $this->longitude = (string) $coordinates['longitude'];
+        
+        // Update address if not provided
+        if (empty($this->address) && isset($coordinates['address'])) {
+            $this->address = $coordinates['address'];
+        }
+
+        $this->dispatch('postcode-looked-up', message: 'Postcode gevonden! Coördinaten zijn ingevuld.');
     }
 
     public function render()

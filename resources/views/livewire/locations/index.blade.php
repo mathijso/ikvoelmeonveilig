@@ -45,6 +45,36 @@
                         @enderror
                     </div>
 
+                    <!-- Postcode -->
+                    <div>
+                        <label for="postcode" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            Postcode
+                        </label>
+                        <div class="flex space-x-2">
+                            <input 
+                                type="text" 
+                                id="postcode"
+                                wire:model="postcode"
+                                class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                placeholder="1234AB"
+                                maxlength="6"
+                            >
+                            <button 
+                                type="button"
+                                wire:click="lookupPostcode"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                            >
+                                Zoeken
+                            </button>
+                        </div>
+                        @error('postcode') 
+                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            Voer een Nederlandse postcode in om automatisch coördinaten op te halen
+                        </p>
+                    </div>
+
                     <!-- Address -->
                     <div>
                         <label for="address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -62,40 +92,49 @@
                         @enderror
                     </div>
 
-                    <!-- Latitude -->
-                    <div>
-                        <label for="latitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Breedtegraad *
-                        </label>
-                        <input 
-                            type="number" 
-                            id="latitude"
-                            wire:model="latitude"
-                            step="any"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                            placeholder="52.3676"
-                        >
-                        @error('latitude') 
-                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    <!-- Coordinates Section -->
+                    <div class="md:col-span-2">
+                        <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">Coördinaten</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Latitude -->
+                            <div>
+                                <label for="latitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Breedtegraad
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="latitude"
+                                    wire:model="latitude"
+                                    step="any"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="52.3676"
+                                >
+                                @error('latitude') 
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                    <!-- Longitude -->
-                    <div>
-                        <label for="longitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                            Lengtegraad *
-                        </label>
-                        <input 
-                            type="number" 
-                            id="longitude"
-                            wire:model="longitude"
-                            step="any"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                            placeholder="4.9041"
-                        >
-                        @error('longitude') 
-                            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                        @enderror
+                            <!-- Longitude -->
+                            <div>
+                                <label for="longitude" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Lengtegraad
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="longitude"
+                                    wire:model="longitude"
+                                    step="any"
+                                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                                    placeholder="4.9041"
+                                >
+                                @error('longitude') 
+                                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                            Coördinaten worden automatisch ingevuld bij het invoeren van een postcode, of voer ze handmatig in
+                        </p>
                     </div>
                 </div>
 
@@ -290,6 +329,7 @@
         x-on:location-updated.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)"
         x-on:location-deleted.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)"
         x-on:location-detected.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)"
+        x-on:postcode-looked-up.window="show = true; message = $event.detail.message; setTimeout(() => show = false, 3000)"
         x-show="show"
         x-transition
         class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50"

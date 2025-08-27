@@ -41,4 +41,8 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
+    'opencage' => [
+        'key' => env('OPENCAGE_API_KEY'),
+    ],
+
 ];
