@@ -9,6 +9,14 @@ class EmergencyAlert extends Model
 {
     use HasFactory;
 
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
     protected $fillable = [
         'user_id',
         'latitude',

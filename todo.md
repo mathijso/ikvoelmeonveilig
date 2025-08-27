@@ -1,2 +1,2 @@
 todo.md
-- zorg er voor dat iemand die is ingelogd ook locaties kan toevoegen, zoals thuis of werk en die gebruiken we om meldingen naar te sturen iedereen die is ingelogd zou dit moeten kunnen doen
+- onnodige emoji en kleuren weghalen in de app, ik wil een primaire kleur (rood) en niet te veel emoji's overal. dat lijd af van het doel. het moet een hele functionele app zijn met als kernfunctie mensen beschermen. 

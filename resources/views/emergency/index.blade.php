@@ -57,6 +57,22 @@
             </div>
         </div>
 
+        <!-- Location Warning -->
+        <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-700 rounded-lg p-4 mb-6">
+            <div class="flex items-start">
+                <span class="text-orange-600 dark:text-orange-400 text-lg mr-3 mt-1">⚠️</span>
+                <div>
+                    <h3 class="text-orange-800 dark:text-orange-200 font-medium mb-1">
+                        Belangrijk: Controleer je locatie
+                    </h3>
+                    <p class="text-orange-700 dark:text-orange-300 text-sm">
+                        Zorg ervoor dat je exacte fysieke locatie correct is voordat je een noodmelding verstuurt. 
+                        Dit is cruciaal voor de hulpverlening. Je kunt je locatie aanpassen als deze niet klopt.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- Emergency Button -->
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
             <div class="text-center">
@@ -79,12 +95,93 @@
 
                 <div x-show="locationConfirmed" class="mb-6">
                     <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg p-4">
-                        <div class="flex items-center">
-                            <span class="text-green-600 dark:text-green-400 text-lg mr-3">✅</span>
-                            <div>
-                                <p class="text-green-800 dark:text-green-200 font-medium">Locatie bevestigd</p>
-                                <p class="text-green-700 dark:text-green-300 text-sm" x-text="locationAddress"></p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <span class="text-green-600 dark:text-green-400 text-lg mr-3">✅</span>
+                                <div>
+                                    <p class="text-green-800 dark:text-green-200 font-medium">Locatie bevestigd</p>
+                                    <p class="text-green-700 dark:text-green-300 text-sm" x-text="locationAddress"></p>
+                                    <p class="text-green-600 dark:text-green-400 text-xs mt-1">
+                                        Coördinaten: <span x-text="latitude + ', ' + longitude"></span>
+                                    </p>
+                                </div>
                             </div>
+                            <button 
+                                @click="showLocationForm = true"
+                                class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 text-sm font-medium"
+                            >
+                                Locatie aanpassen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Adjustment Form -->
+                <div x-show="showLocationForm" x-cloak class="mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                        <h4 class="text-blue-800 dark:text-blue-200 font-medium mb-3">Controleer en pas je locatie aan</h4>
+                        <p class="text-blue-700 dark:text-blue-300 text-sm mb-4">
+                            Zorg ervoor dat dit je exacte fysieke locatie is. Dit is cruciaal voor de hulpverlening.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                                    Breedtegraad
+                                </label>
+                                <input 
+                                    type="number" 
+                                    x-model="latitude" 
+                                    step="any"
+                                    class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                    placeholder="52.3676"
+                                >
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                                    Lengtegraad
+                                </label>
+                                <input 
+                                    type="number" 
+                                    x-model="longitude" 
+                                    step="any"
+                                    class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                    placeholder="4.9041"
+                                >
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                                Adres (optioneel)
+                            </label>
+                            <input 
+                                type="text" 
+                                x-model="locationAddress" 
+                                class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                placeholder="Straat, huisnummer, plaats"
+                            >
+                        </div>
+                        
+                        <div class="flex space-x-3">
+                            <button 
+                                @click="getCurrentLocation()"
+                                class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                            >
+                                📍 Huidige locatie ophalen
+                            </button>
+                            <button 
+                                @click="confirmLocation()"
+                                class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                            >
+                                ✅ Locatie bevestigen
+                            </button>
+                            <button 
+                                @click="showLocationForm = false"
+                                class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-4 rounded-lg transition-colors text-sm"
+                            >
+                                Annuleren
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -106,6 +203,19 @@
                         Noodmelding verzenden...
                     </div>
                 </button>
+
+                <!-- Location Status Info -->
+                <div class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-600 dark:text-gray-300">
+                            <span x-show="locationConfirmed">✅ Locatie bevestigd</span>
+                            <span x-show="!locationConfirmed">⏳ Locatie wordt opgehaald...</span>
+                        </span>
+                        <span class="text-gray-500 dark:text-gray-400" x-show="locationConfirmed">
+                            Nauwkeurigheid: <span x-text="locationAccuracy || 'Hoog'"></span>
+                        </span>
+                    </div>
+                </div>
 
                 <!-- Warning -->
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
@@ -188,6 +298,10 @@
             return {
                 locationConfirmed: false,
                 locationAddress: '',
+                latitude: '',
+                longitude: '',
+                locationAccuracy: '',
+                showLocationForm: false,
                 isSending: false,
                 showSuccessModal: false,
                 showErrorModal: false,
@@ -203,19 +317,54 @@
                         navigator.geolocation.getCurrentPosition(
                             (position) => {
                                 this.locationConfirmed = true;
-                                this.latitude = position.coords.latitude;
-                                this.longitude = position.coords.longitude;
+                                this.latitude = position.coords.latitude.toFixed(8);
+                                this.longitude = position.coords.longitude.toFixed(8);
+                                
+                                // Set accuracy information
+                                if (position.coords.accuracy) {
+                                    if (position.coords.accuracy <= 10) {
+                                        this.locationAccuracy = 'Zeer hoog';
+                                    } else if (position.coords.accuracy <= 50) {
+                                        this.locationAccuracy = 'Hoog';
+                                    } else if (position.coords.accuracy <= 100) {
+                                        this.locationAccuracy = 'Gemiddeld';
+                                    } else {
+                                        this.locationAccuracy = 'Laag';
+                                    }
+                                } else {
+                                    this.locationAccuracy = 'Onbekend';
+                                }
+                                
                                 this.getAddressFromCoords(position.coords.latitude, position.coords.longitude);
+                                
+                                // Show success message
+                                this.showLocationMessage('Locatie succesvol opgehaald!');
                             },
                             (error) => {
                                 console.error('Geolocation error:', error);
-                                this.errorMessage = 'Kon je locatie niet bepalen. Controleer je locatie-instellingen.';
+                                let errorMsg = 'Kon je locatie niet bepalen. ';
+                                
+                                switch(error.code) {
+                                    case error.PERMISSION_DENIED:
+                                        errorMsg += 'Locatie toegang geweigerd. Controleer je browser instellingen.';
+                                        break;
+                                    case error.POSITION_UNAVAILABLE:
+                                        errorMsg += 'Locatie informatie niet beschikbaar.';
+                                        break;
+                                    case error.TIMEOUT:
+                                        errorMsg += 'Locatie ophalen duurde te lang. Probeer het opnieuw.';
+                                        break;
+                                    default:
+                                        errorMsg += 'Er is een onbekende fout opgetreden.';
+                                }
+                                
+                                this.errorMessage = errorMsg;
                                 this.showErrorModal = true;
                             },
                             {
                                 enableHighAccuracy: true,
-                                timeout: 10000,
-                                maximumAge: 60000
+                                timeout: 15000,
+                                maximumAge: 30000
                             }
                         );
                     } else {
@@ -232,6 +381,56 @@
                     } catch (error) {
                         this.locationAddress = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
                     }
+                },
+
+                confirmLocation() {
+                    // Validate coordinates
+                    const lat = parseFloat(this.latitude);
+                    const lng = parseFloat(this.longitude);
+                    
+                    if (isNaN(lat) || isNaN(lng)) {
+                        alert('Voer geldige coördinaten in.');
+                        return;
+                    }
+                    
+                    if (lat < -90 || lat > 90) {
+                        alert('Breedtegraad moet tussen -90 en 90 liggen.');
+                        return;
+                    }
+                    
+                    if (lng < -180 || lng > 180) {
+                        alert('Lengtegraad moet tussen -180 en 180 liggen.');
+                        return;
+                    }
+                    
+                    // Update coordinates with proper precision
+                    this.latitude = lat.toFixed(8);
+                    this.longitude = lng.toFixed(8);
+                    
+                    // Get address for the new coordinates
+                    this.getAddressFromCoords(lat, lng);
+                    
+                    // Hide the form and confirm location
+                    this.showLocationForm = false;
+                    this.locationConfirmed = true;
+                    
+                    // Show success message
+                    this.showLocationMessage('Locatie succesvol bijgewerkt!');
+                },
+
+                showLocationMessage(message) {
+                    // Create a temporary success message
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50';
+                    messageDiv.textContent = message;
+                    document.body.appendChild(messageDiv);
+                    
+                    // Remove after 3 seconds
+                    setTimeout(() => {
+                        if (messageDiv.parentNode) {
+                            messageDiv.parentNode.removeChild(messageDiv);
+                        }
+                    }, 3000);
                 },
 
                 async sendEmergencyAlert() {

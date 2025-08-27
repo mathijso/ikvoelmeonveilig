@@ -9,9 +9,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/emergency', function () {
-    return view('emergency.index');
-})->name('emergency.index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/emergency', function () {
+        return view('emergency.index');
+    })->name('emergency.index');
+
+    Route::post('/emergency', [App\Http\Controllers\EmergencyController::class, 'store'])->name('emergency.store');
+    Route::get('/emergency/{emergency}', [App\Http\Controllers\EmergencyController::class, 'show'])->name('emergency.show');
+    Route::patch('/emergency/{emergency}/resolve', [App\Http\Controllers\EmergencyController::class, 'resolve'])->name('emergency.resolve');
+    Route::patch('/emergency/{emergency}/cancel', [App\Http\Controllers\EmergencyController::class, 'cancel'])->name('emergency.cancel');
+});
 
     Route::view('dashboard', 'dashboard')   
     ->middleware(['auth', 'verified'])
