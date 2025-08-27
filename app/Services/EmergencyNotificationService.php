@@ -11,30 +11,29 @@ use Illuminate\Support\Facades\Log;
 class EmergencyNotificationService
 {
     /**
-     * Send notifications to users within radius of emergency alert
+     * Send notifications to users within dynamic radius of emergency alert
+     * Starts at 1km and expands up to 5km until at least 20 people are found
      */
-    public function sendNotifications(EmergencyAlert $alert, $radiusKm = 3)
+    public function sendNotifications(EmergencyAlert $alert, $maxRadiusKm = 5, $minPeople = 20)
     {
         try {
-            // Get users within radius who are available for help and have active locations
-            $nearbyUsers = User::where('is_available_for_help', true)
-                ->where('receive_notifications', true)
-                ->where('id', '!=', $alert->user_id) // Don't notify the person who sent the alert
-                ->whereHas('locations', function ($query) {
-                    $query->active();
-                })
-                ->get()
-                ->filter(function ($user) use ($alert, $radiusKm) {
-                    // Check if user has any locations within radius
-                    return $user->locations()->active()->get()->some(function ($location) use ($alert, $radiusKm) {
-                        return $this->calculateDistance(
-                            $alert->latitude,
-                            $alert->longitude,
-                            $location->latitude,
-                            $location->longitude
-                        ) <= $radiusKm;
-                    });
-                });
+            $currentRadius = 1; // Start with 1km
+            $nearbyUsers = collect();
+            $finalRadius = $currentRadius;
+
+            // Dynamically expand radius until we find enough people or reach max radius
+            while ($currentRadius <= $maxRadiusKm && $nearbyUsers->count() < $minPeople) {
+                $nearbyUsers = $this->getUsersWithinRadius($alert, $currentRadius);
+                $finalRadius = $currentRadius;
+                
+                // If we found enough people, break
+                if ($nearbyUsers->count() >= $minPeople) {
+                    break;
+                }
+                
+                // Expand radius by 1km for next iteration
+                $currentRadius += 1;
+            }
 
             $notificationCount = 0;
 
@@ -71,7 +70,9 @@ class EmergencyNotificationService
             Log::info('Emergency notifications sent', [
                 'alert_id' => $alert->id,
                 'notifications_sent' => $notificationCount,
-                'total_nearby_users' => $nearbyUsers->count()
+                'total_nearby_users' => $nearbyUsers->count(),
+                'final_radius_km' => $finalRadius,
+                'target_people' => $minPeople
             ]);
 
             return $notificationCount;
@@ -83,6 +84,31 @@ class EmergencyNotificationService
             ]);
             throw $e;
         }
+    }
+
+    /**
+     * Get users within a specific radius of the emergency alert
+     */
+    private function getUsersWithinRadius(EmergencyAlert $alert, $radiusKm)
+    {
+        return User::where('is_available_for_help', true)
+            ->where('receive_notifications', true)
+            ->where('id', '!=', $alert->user_id) // Don't notify the person who sent the alert
+            ->whereHas('locations', function ($query) {
+                $query->active();
+            })
+            ->get()
+            ->filter(function ($user) use ($alert, $radiusKm) {
+                // Check if user has any locations within radius
+                return $user->locations()->active()->get()->some(function ($location) use ($alert, $radiusKm) {
+                    return $this->calculateDistance(
+                        $alert->latitude,
+                        $alert->longitude,
+                        $location->latitude,
+                        $location->longitude
+                    ) <= $radiusKm;
+                });
+            });
     }
 
     /**

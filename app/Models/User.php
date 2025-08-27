@@ -106,7 +106,7 @@ class User extends Authenticatable
     /**
      * Get users within a certain radius of given coordinates based on their locations
      */
-    public static function withinRadius($latitude, $longitude, $radiusKm = 3)
+    public static function withinRadius($latitude, $longitude, $radiusKm = 5)
     {
         $earthRadius = 6371; // Earth's radius in kilometers
 
@@ -118,5 +118,47 @@ class User extends Authenticatable
                 ", [$latitude, $longitude, $latitude])
                 ->having('distance', '<=', $radiusKm);
         });
+    }
+
+    /**
+     * Get count of users within 5km of the current user's locations
+     */
+    public function getNearbyUsersCount($radiusKm = 5)
+    {
+        $userLocations = $this->locations()->active()->get();
+        
+        if ($userLocations->isEmpty()) {
+            return 0;
+        }
+
+        $nearbyUsers = collect();
+        
+        foreach ($userLocations as $location) {
+            $usersInRadius = static::where('is_available_for_help', true)
+                ->where('receive_notifications', true)
+                ->where('id', '!=', $this->id)
+                ->whereHas('locations', function ($query) use ($location, $radiusKm) {
+                    $query->active()
+                        ->selectRaw("
+                            *,
+                            (6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance
+                        ", [$location->latitude, $location->longitude, $location->latitude])
+                        ->having('distance', '<=', $radiusKm);
+                })
+                ->get();
+            
+            $nearbyUsers = $nearbyUsers->merge($usersInRadius);
+        }
+        
+        // Remove duplicates based on user ID
+        return $nearbyUsers->unique('id')->count();
+    }
+
+    /**
+     * Get total count of registered locations in the system
+     */
+    public static function getTotalLocationsCount()
+    {
+        return \App\Models\UserLocation::where('is_active', true)->count();
     }
 }

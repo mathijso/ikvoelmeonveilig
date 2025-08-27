@@ -65,7 +65,7 @@ class EmergencyController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'Noodmelding verzonden! ' . $notificationCount . ' mensen in de buurt zijn op de hoogte gebracht.',
+                'message' => 'Noodmelding verzonden! ' . $notificationCount . ' mensen in de buurt zijn op de hoogte gebracht (dynamische range tot 5km).',
                 'alert_id' => $alert->id,
                 'notifications_sent' => $notificationCount
             ]);

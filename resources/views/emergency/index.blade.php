@@ -246,7 +246,7 @@
                 <div class="flex items-start">
                     <span class="text-red-600 dark:text-red-400 font-semibold mr-3 mt-1">1.</span>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">
-                        Mensen binnen 3km van je locatie krijgen een melding
+                        Mensen binnen 5km van je locatie krijgen een melding
                     </p>
                 </div>
                 <div class="flex items-start">

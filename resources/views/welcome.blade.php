@@ -117,7 +117,7 @@
                         </div>
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">3. Krijg hulp</h3>
                         <p class="text-gray-600 dark:text-gray-300">
-                            Mensen binnen 3km krijgen een melding en kunnen je helpen
+                            Mensen binnen 5km krijgen een melding en kunnen je helpen
                         </p>
                     </div>
                 </div>

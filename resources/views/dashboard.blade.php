@@ -74,7 +74,7 @@
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
                 Status Overzicht
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
                     <div class="flex items-center">
                         <svg class="w-6 h-6 text-red-600 dark:text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -93,7 +93,7 @@
                         </svg>
                         <div>
                             <h3 class="font-semibold text-red-800 dark:text-red-200">Netwerk</h3>
-                            <p class="text-red-700 dark:text-red-300 text-sm">Mensen in je buurt kunnen je helpen</p>
+                            <p class="text-red-700 dark:text-red-300 text-sm">{{ $statistics['nearby_users'] }} mensen binnen 5km</p>
                         </div>
                     </div>
                 </div>
@@ -103,8 +103,19 @@
                             <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                         </svg>
                         <div>
-                            <h3 class="font-semibold text-red-800 dark:text-red-200">Locaties</h3>
-                            <p class="text-red-700 dark:text-red-300 text-sm">{{ Auth::user()->locations()->count() }} locatie(s) ingesteld</p>
+                            <h3 class="font-semibold text-red-800 dark:text-red-200">Mijn Locaties</h3>
+                            <p class="text-red-700 dark:text-red-300 text-sm">{{ $statistics['user_locations'] }} locatie(s) ingesteld</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-red-600 dark:text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <h3 class="font-semibold text-red-800 dark:text-red-200">Totaal Systeem</h3>
+                            <p class="text-red-700 dark:text-red-300 text-sm">{{ $statistics['total_locations'] }} locaties geregistreerd</p>
                         </div>
                     </div>
                 </div>
