@@ -1,20 +1,45 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Noodmelding - Ik Voel Me Onveilig</title>
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-    
-    <!-- Styles -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Noodmelding - Veiligheidsnetwerk</title>
+        <meta name="description" content="Stuur een noodmelding via het Veiligheidsnetwerk. Mensen in je buurt worden automatisch gewaarschuwd om je te helpen.">
+        
+        <!-- Favicon -->
+        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:title" content="Noodmelding - Veiligheidsnetwerk" />
+        <meta property="og:description" content="Stuur een noodmelding via het Veiligheidsnetwerk. Mensen in je buurt worden automatisch gewaarschuwd om je te helpen." />
+        <meta property="og:image" content="{{ url('/og-image.svg') }}" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="{{ url()->current() }}" />
+        <meta property="twitter:title" content="Noodmelding - Veiligheidsnetwerk" />
+        <meta property="twitter:description" content="Stuur een noodmelding via het Veiligheidsnetwerk. Mensen in je buurt worden automatisch gewaarschuwd om je te helpen." />
+        <meta property="twitter:image" content="{{ url('/og-image.svg') }}" />
+
+        <!-- Theme Color -->
+        <meta name="theme-color" content="#dc2626" />
+        
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        
+        <!-- Styles -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        
+        <!-- Alpine.js -->
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    </head>
 <body class="bg-gradient-to-br from-red-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 min-h-screen" x-data="emergencyAlert()">
     <!-- Development Warning -->
     <div class="bg-yellow-500 text-yellow-900 px-4 py-2 text-center text-sm font-medium">
@@ -32,7 +57,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="text-xl font-bold text-red-600 dark:text-red-400">
-                        Ik Voel Me Onveilig
+                        Veiligheidsnetwerk
                     </a>
                 </div>
                 <div class="flex items-center space-x-4">

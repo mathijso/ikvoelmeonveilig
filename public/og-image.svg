@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef2f2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fce7f3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Main alert icon -->
+  <g transform="translate(100, 165)">
+    <!-- Background circle -->
+    <circle cx="200" cy="200" r="180" fill="#dc2626" stroke="#991b1b" stroke-width="8"/>
+    
+    <!-- Alert triangle -->
+    <path d="M200 60L320 320H80L200 60Z" fill="white"/>
+    
+    <!-- Exclamation mark -->
+    <rect x="190" y="140" width="20" height="80" fill="#dc2626"/>
+    <circle cx="200" cy="240" r="12" fill="#dc2626"/>
+  </g>
+  
+  <!-- App name -->
+  <text x="600" y="280" text-anchor="middle" font-family="Inter, sans-serif" font-size="72" font-weight="700" fill="#1f2937">
+    Veiligheidsnetwerk
+  </text>
+  
+  <!-- Tagline -->
+  <text x="600" y="340" text-anchor="middle" font-family="Inter, sans-serif" font-size="32" font-weight="400" fill="#6b7280">
+    Voel je veiliger met hulp in de buurt
+  </text>
+  
+  <!-- Safety network concept -->
+  <g transform="translate(600, 450)">
+    <!-- Network dots -->
+    <circle cx="-150" cy="0" r="8" fill="#dc2626"/>
+    <circle cx="-100" cy="-30" r="8" fill="#dc2626"/>
+    <circle cx="-50" cy="20" r="8" fill="#dc2626"/>
+    <circle cx="0" cy="-20" r="8" fill="#dc2626"/>
+    <circle cx="50" cy="30" r="8" fill="#dc2626"/>
+    <circle cx="100" cy="-10" r="8" fill="#dc2626"/>
+    <circle cx="150" cy="10" r="8" fill="#dc2626"/>
+    
+    <!-- Connection lines -->
+    <line x1="-150" y1="0" x2="-100" y2="-30" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+    <line x1="-100" y1="-30" x2="-50" y2="20" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+    <line x1="-50" y1="20" x2="0" y2="-20" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+    <line x1="0" y1="-20" x2="50" y2="30" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+    <line x1="50" y1="30" x2="100" y2="-10" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+    <line x1="100" y1="-10" x2="150" y2="10" stroke="#dc2626" stroke-width="3" opacity="0.6"/>
+  </g>
+</svg>

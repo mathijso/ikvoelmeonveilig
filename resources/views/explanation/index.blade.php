@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html lang="nl" class="h-full">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoe werkt het Veiligheidsnetwerk? - Uitleg</title>
-    <meta name="description" content="Leer hoe het Veiligheidsnetwerk werkt en waarom we het hebben gemaakt om vrouwen veiliger te laten voelen en sociale controle te verbeteren.">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hoe werkt het Veiligheidsnetwerk? - Uitleg</title>
+        <meta name="description" content="Leer hoe het Veiligheidsnetwerk werkt en waarom we het hebben gemaakt om vrouwen veiliger te laten voelen en sociale controle te verbeteren.">
+        
+        <!-- Favicon -->
+        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:title" content="Hoe werkt het Veiligheidsnetwerk? - Uitleg" />
+        <meta property="og:description" content="Leer hoe het Veiligheidsnetwerk werkt en waarom we het hebben gemaakt om vrouwen veiliger te laten voelen en sociale controle te verbeteren." />
+        <meta property="og:image" content="{{ url('/og-image.svg') }}" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="{{ url()->current() }}" />
+        <meta property="twitter:title" content="Hoe werkt het Veiligheidsnetwerk? - Uitleg" />
+        <meta property="twitter:description" content="Leer hoe het Veiligheidsnetwerk werkt en waarom we het hebben gemaakt om vrouwen veiliger te laten voelen en sociale controle te verbeteren." />
+        <meta property="twitter:image" content="{{ url('/og-image.svg') }}" />
+
+        <!-- Theme Color -->
+        <meta name="theme-color" content="#dc2626" />
+        
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <script src="https://cdn.tailwindcss.com"></script>

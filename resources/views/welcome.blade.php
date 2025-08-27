@@ -3,13 +3,33 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Ik Voel Me Onveilig - Een veiligheidsnetwerk voor mensen die zich onveilig voelen. Krijg direct hulp van mensen in je buurt.">
+        <meta name="description" content="Veiligheidsnetwerk - Een innovatief systeem dat mensen in je buurt waarschuwt wanneer je je onveilig voelt. Directe hulp binnen 5 kilometer van je locatie.">
 
-        <title>Ik Voel Me Onveilig - Veiligheidsnetwerk</title>
+        <title>Veiligheidsnetwerk - Voel je veiliger met hulp in de buurt</title>
 
+        <!-- Favicon -->
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ url()->current() }}" />
+        <meta property="og:title" content="Veiligheidsnetwerk - Voel je veiliger met hulp in de buurt" />
+        <meta property="og:description" content="Een innovatief systeem dat mensen in je buurt waarschuwt wanneer je je onveilig voelt. Directe hulp binnen 5 kilometer van je locatie." />
+        <meta property="og:image" content="{{ url('/og-image.svg') }}" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="{{ url()->current() }}" />
+        <meta property="twitter:title" content="Veiligheidsnetwerk - Voel je veiliger met hulp in de buurt" />
+        <meta property="twitter:description" content="Een innovatief systeem dat mensen in je buurt waarschuwt wanneer je je onveilig voelt. Directe hulp binnen 5 kilometer van je locatie." />
+        <meta property="twitter:image" content="{{ url('/og-image.svg') }}" />
+
+        <!-- Theme Color -->
+        <meta name="theme-color" content="#dc2626" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -36,7 +56,7 @@
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <h1 class="text-xl font-bold text-red-600 dark:text-red-400">
-                                Ik Voel Me Onveilig
+                                Veiligheidsnetwerk
                             </h1>
                         </div>
                     </div>
