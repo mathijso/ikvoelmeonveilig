@@ -63,20 +63,17 @@
                         Directe hulp binnen 3 kilometer van je locatie.
                     </p>
                     
-                    @auth
-                        <a href="{{ route('emergency.index') }}" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl">
-                            🚨 Noodmelding Sturen
-                        </a>
-                    @else
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        @auth
+                            <a href="{{ route('emergency.index') }}" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl">
+                                🚨 Noodmelding Sturen
+                            </a>
+                        @else
                             <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 bg-red-600 hover:bg-red-700 text-white text-lg font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl">
-                                Gratis Registreren
+                                🚨 Noodmelding Sturen
                             </a>
-                            <a href="{{ route('login') }}" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-300 text-lg font-semibold rounded-lg transition-colors shadow-lg hover:shadow-xl">
-                                Inloggen
-                            </a>
-                        </div>
-                    @endauth
+                        @endauth
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,11 +155,8 @@
         <footer class="bg-gray-900 text-white py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center">
-                    <p class="text-gray-400">
-                        © 2025 Ik Voel Me Onveilig. Alle rechten voorbehouden.
-                    </p>
-                    <p class="text-sm text-gray-500 mt-2">
-                        In geval van een echte noodsituatie, bel altijd 112
+                    <p class="text-lg text-yellow-4 00 mt-2">
+                        ⚠️ Bel altijd 112 in een noodsituatie
                     </p>
                 </div>
             </div>
