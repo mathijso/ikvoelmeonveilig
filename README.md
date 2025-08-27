@@ -79,8 +79,8 @@ Deze app is gebouwd vanuit de overtuiging dat we samen veiliger zijn. Door snel 
 ## 📞 Ondersteuning
 
 Heb je vragen of problemen? Neem contact op via:
-- Email: [jouw-email@domain.com]
-- GitHub Issues: [link naar issues]
+- Email: mathihjsoggel@gmail.com
+
 
 ## 🙏 Bijdragen
 
