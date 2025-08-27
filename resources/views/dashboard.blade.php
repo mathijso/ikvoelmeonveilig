@@ -44,7 +44,7 @@
                     <p class="text-gray-600 dark:text-gray-300 mb-4">
                         Beheer je belangrijke locaties
                     </p>
-                    <a href="{{ route('locations.index') }}" class="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    <a href="{{ route('locations.index') }}" class="inline-block bg-white hover:bg-gray-50 text-red-600 border-2 border-red-600 hover:border-red-700 px-6 py-3 rounded-lg font-medium transition-colors">
                         Locaties Beheren
                     </a>
                 </div>
@@ -62,7 +62,7 @@
                     <p class="text-gray-600 dark:text-gray-300 mb-4">
                         Pas je profiel en voorkeuren aan
                     </p>
-                    <a href="{{ route('settings.profile') }}" class="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    <a href="{{ route('settings.profile') }}" class="inline-block bg-white hover:bg-gray-50 text-red-600 border-2 border-red-600 hover:border-red-700 px-6 py-3 rounded-lg font-medium transition-colors">
                         Instellingen
                     </a>
                 </div>

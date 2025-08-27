@@ -12,7 +12,7 @@
             </div>
             <button 
                 wire:click="showAddForm"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
             >
                 + Locatie Toevoegen
             </button>
@@ -37,7 +37,7 @@
                             type="text" 
                             id="name"
                             wire:model="name"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                             placeholder="Bijv. Thuis, Werk, Gym"
                         >
                         @error('name') 
@@ -54,7 +54,7 @@
                             type="text" 
                             id="address"
                             wire:model="address"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                             placeholder="Straat, huisnummer, plaats"
                         >
                         @error('address') 
@@ -72,7 +72,7 @@
                             id="latitude"
                             wire:model="latitude"
                             step="any"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                             placeholder="52.3676"
                         >
                         @error('latitude') 
@@ -90,7 +90,7 @@
                             id="longitude"
                             wire:model="longitude"
                             step="any"
-                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                             placeholder="4.9041"
                         >
                         @error('longitude') 
@@ -117,7 +117,7 @@
                         <input 
                             type="checkbox" 
                             wire:model="is_primary"
-                            class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                            class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
                         >
                         <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Primaire locatie</span>
                     </label>
@@ -126,7 +126,7 @@
                         <input 
                             type="checkbox" 
                             wire:model="is_active"
-                            class="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                            class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50"
                         >
                         <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Actief</span>
                     </label>
