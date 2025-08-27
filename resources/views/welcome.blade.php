@@ -62,7 +62,7 @@
                     </div>
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('explanation.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium">
-                            Hoe werkt het?
+                            Uitleg
                         </a>
                         @auth
                             <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium">
