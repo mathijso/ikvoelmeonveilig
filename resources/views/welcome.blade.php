@@ -26,7 +26,7 @@
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
                             <h1 class="text-xl font-bold text-red-600 dark:text-red-400">
-                                🛡️ Ik Voel Me Onveilig
+                                Ik Voel Me Onveilig
                             </h1>
                         </div>
                     </div>
@@ -127,50 +127,7 @@
             </div>
         </div>
 
-        <!-- Features -->
-        <div class="bg-gray-50 dark:bg-gray-900 py-16">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                        Waarom kiezen voor ons?
-                    </h2>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <div class="text-red-600 dark:text-red-400 text-3xl mb-4">⚡</div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Direct</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Binnen seconden worden mensen in je buurt gewaarschuwd
-                        </p>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <div class="text-red-600 dark:text-red-400 text-3xl mb-4">🔒</div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Veilig</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Je gegevens worden veilig opgeslagen en alleen gedeeld met mensen in de buurt
-                        </p>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <div class="text-red-600 dark:text-red-400 text-3xl mb-4">🌍</div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Lokaal</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Alleen mensen binnen 3 kilometer van je locatie worden gewaarschuwd
-                        </p>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                        <div class="text-red-600 dark:text-red-400 text-3xl mb-4">📧</div>
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">Notificaties</h3>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            Ontvang meldingen via email, SMS en push notificaties
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <!-- CTA Section -->
         <div class="bg-red-600 dark:bg-red-700 py-16">

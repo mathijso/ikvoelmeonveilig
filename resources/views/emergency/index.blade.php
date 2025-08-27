@@ -22,7 +22,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="text-xl font-bold text-red-600 dark:text-red-400">
-                        🛡️ Ik Voel Me Onveilig
+                        Ik Voel Me Onveilig
                     </a>
                 </div>
                 <div class="flex items-center space-x-4">
