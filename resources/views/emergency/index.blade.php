@@ -45,8 +45,10 @@
         <!-- Status Card -->
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
             <div class="text-center">
-                <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-2xl">✅</span>
+                <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
                 </div>
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                     Je bent beschermd
@@ -58,14 +60,16 @@
         </div>
 
         <!-- Location Warning -->
-        <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-700 rounded-lg p-4 mb-6">
+        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4 mb-6">
             <div class="flex items-start">
-                <span class="text-orange-600 dark:text-orange-400 text-lg mr-3 mt-1">⚠️</span>
+                <svg class="w-5 h-5 text-red-600 dark:text-red-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
                 <div>
-                    <h3 class="text-orange-800 dark:text-orange-200 font-medium mb-1">
+                    <h3 class="text-red-800 dark:text-red-200 font-medium mb-1">
                         Belangrijk: Controleer je locatie
                     </h3>
-                    <p class="text-orange-700 dark:text-orange-300 text-sm">
+                    <p class="text-red-700 dark:text-red-300 text-sm">
                         Zorg ervoor dat je exacte fysieke locatie correct is voordat je een noodmelding verstuurt. 
                         Dit is cruciaal voor de hulpverlening. Je kunt je locatie aanpassen als deze niet klopt.
                     </p>
@@ -82,33 +86,37 @@
                 
                 <!-- Location Status -->
                 <div x-show="!locationConfirmed" class="mb-6">
-                    <div class="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-700 rounded-lg p-4">
+                    <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg p-4">
                         <div class="flex items-center">
-                            <span class="text-yellow-600 dark:text-yellow-400 text-lg mr-3">📍</span>
+                            <svg class="w-5 h-5 text-red-600 dark:text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
                             <div>
-                                <p class="text-yellow-800 dark:text-yellow-200 font-medium">Locatie nodig</p>
-                                <p class="text-yellow-700 dark:text-yellow-300 text-sm">We hebben je locatie nodig om mensen in de buurt te waarschuwen</p>
+                                <p class="text-red-800 dark:text-red-200 font-medium">Locatie nodig</p>
+                                <p class="text-red-700 dark:text-red-300 text-sm">We hebben je locatie nodig om mensen in de buurt te waarschuwen</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div x-show="locationConfirmed" class="mb-6">
-                    <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-700 rounded-lg p-4">
+                    <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg p-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <span class="text-green-600 dark:text-green-400 text-lg mr-3">✅</span>
+                                <svg class="w-5 h-5 text-red-600 dark:text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
                                 <div>
-                                    <p class="text-green-800 dark:text-green-200 font-medium">Locatie bevestigd</p>
-                                    <p class="text-green-700 dark:text-green-300 text-sm" x-text="locationAddress"></p>
-                                    <p class="text-green-600 dark:text-green-400 text-xs mt-1">
+                                    <p class="text-red-800 dark:text-red-200 font-medium">Locatie bevestigd</p>
+                                    <p class="text-red-700 dark:text-red-300 text-sm" x-text="locationAddress"></p>
+                                    <p class="text-red-600 dark:text-red-400 text-xs mt-1">
                                         Coördinaten: <span x-text="latitude + ', ' + longitude"></span>
                                     </p>
                                 </div>
                             </div>
                             <button 
                                 @click="showLocationForm = true"
-                                class="text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 text-sm font-medium"
+                                class="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 text-sm font-medium"
                             >
                                 Locatie aanpassen
                             </button>
@@ -118,47 +126,47 @@
 
                 <!-- Location Adjustment Form -->
                 <div x-show="showLocationForm" x-cloak class="mb-6">
-                    <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
-                        <h4 class="text-blue-800 dark:text-blue-200 font-medium mb-3">Controleer en pas je locatie aan</h4>
-                        <p class="text-blue-700 dark:text-blue-300 text-sm mb-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
+                        <h4 class="text-red-800 dark:text-red-200 font-medium mb-3">Controleer en pas je locatie aan</h4>
+                        <p class="text-red-700 dark:text-red-300 text-sm mb-4">
                             Zorg ervoor dat dit je exacte fysieke locatie is. Dit is cruciaal voor de hulpverlening.
                         </p>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                                <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                                <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
                                     Breedtegraad
                                 </label>
                                 <input 
                                     type="number" 
                                     x-model="latitude" 
                                     step="any"
-                                    class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                    class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                                     placeholder="52.3676"
                                 >
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                                <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
                                     Lengtegraad
                                 </label>
                                 <input 
                                     type="number" 
                                     x-model="longitude" 
                                     step="any"
-                                    class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                    class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                                     placeholder="4.9041"
                                 >
                             </div>
                         </div>
                         
                         <div class="mb-4">
-                            <label class="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-1">
+                            <label class="block text-sm font-medium text-red-800 dark:text-red-200 mb-1">
                                 Adres (optioneel)
                             </label>
                             <input 
                                 type="text" 
                                 x-model="locationAddress" 
-                                class="w-full px-3 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-blue-800 dark:text-blue-200"
+                                class="w-full px-3 py-2 border border-red-300 dark:border-red-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                                 placeholder="Straat, huisnummer, plaats"
                             >
                         </div>
@@ -166,15 +174,15 @@
                         <div class="flex space-x-3">
                             <button 
                                 @click="getCurrentLocation()"
-                                class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
                             >
-                                📍 Huidige locatie ophalen
+                                Huidige locatie ophalen
                             </button>
                             <button 
                                 @click="confirmLocation()"
-                                class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
                             >
-                                ✅ Locatie bevestigen
+                                Locatie bevestigen
                             </button>
                             <button 
                                 @click="showLocationForm = false"
@@ -193,7 +201,7 @@
                     class="w-full bg-red-600 hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-xl font-bold py-6 px-8 rounded-lg transition-colors shadow-lg hover:shadow-xl disabled:shadow-none"
                 >
                     <div x-show="!isSending">
-                        🚨 Ik Voel Me Onveilig
+                        Ik Voel Me Onveilig
                     </div>
                     <div x-show="isSending" class="flex items-center justify-center">
                         <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -208,8 +216,8 @@
                 <div class="mt-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div class="flex items-center justify-between text-sm">
                         <span class="text-gray-600 dark:text-gray-300">
-                            <span x-show="locationConfirmed">✅ Locatie bevestigd</span>
-                            <span x-show="!locationConfirmed">⏳ Locatie wordt opgehaald...</span>
+                            <span x-show="locationConfirmed">Locatie bevestigd</span>
+                            <span x-show="!locationConfirmed">Locatie wordt opgehaald...</span>
                         </span>
                         <span class="text-gray-500 dark:text-gray-400" x-show="locationConfirmed">
                             Nauwkeurigheid: <span x-text="locationAccuracy || 'Hoog'"></span>
@@ -219,7 +227,7 @@
 
                 <!-- Warning -->
                 <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
-                    ⚠️ Gebruik deze functie alleen in echte noodsituaties. Voor directe hulp bel 112.
+                    Gebruik deze functie alleen in echte noodsituaties. Voor directe hulp bel 112.
                 </p>
             </div>
         </div>
@@ -231,19 +239,19 @@
             </h3>
             <div class="space-y-3">
                 <div class="flex items-start">
-                    <span class="text-red-600 dark:text-red-400 text-lg mr-3 mt-1">1</span>
+                    <span class="text-red-600 dark:text-red-400 font-semibold mr-3 mt-1">1.</span>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">
                         Mensen binnen 3km van je locatie krijgen een melding
                     </p>
                 </div>
                 <div class="flex items-start">
-                    <span class="text-red-600 dark:text-red-400 text-lg mr-3 mt-1">2</span>
+                    <span class="text-red-600 dark:text-red-400 font-semibold mr-3 mt-1">2.</span>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">
                         Ze kunnen je helpen of 112 bellen als dat nodig is
                     </p>
                 </div>
                 <div class="flex items-start">
-                    <span class="text-red-600 dark:text-red-400 text-lg mr-3 mt-1">3</span>
+                    <span class="text-red-600 dark:text-red-400 font-semibold mr-3 mt-1">3.</span>
                     <p class="text-gray-600 dark:text-gray-300 text-sm">
                         Je kunt je melding annuleren als de situatie is opgelost
                     </p>
@@ -256,8 +264,10 @@
     <div x-show="showSuccessModal" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full">
             <div class="text-center">
-                <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-2xl">✅</span>
+                <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     Noodmelding verzonden!
@@ -280,7 +290,9 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-sm w-full">
             <div class="text-center">
                 <div class="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-2xl">❌</span>
+                    <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     Fout opgetreden

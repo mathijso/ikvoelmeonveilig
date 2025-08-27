@@ -31,7 +31,7 @@
                     <!-- Emergency Button (Mobile) -->
                     <div class="md:hidden">
                         <a href="{{ route('emergency.index') }}" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors">
-                            🚨
+                            Noodmelding
                         </a>
                     </div>
 
@@ -39,7 +39,7 @@
                     <div class="flex items-center space-x-4">
                         <!-- Emergency Button (Desktop) -->
                         <a href="{{ route('emergency.index') }}" class="hidden md:block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors">
-                            🚨 Noodmelding
+                            Noodmelding
                         </a>
 
                         <!-- User Dropdown -->
@@ -59,12 +59,12 @@
                             <!-- Dropdown Menu -->
                             <div x-show="open" @click.away="open = false" x-cloak class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
                                 <a href="{{ route('settings.profile') }}" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    👤 Instellingen
+                                    Instellingen
                                 </a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                        🚪 Uitloggen
+                                        Uitloggen
                                     </button>
                                 </form>
                             </div>
@@ -87,16 +87,16 @@
             
             <div x-show="open" x-cloak class="px-4 pb-4 space-y-2">
                 <a href="{{ route('dashboard') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                    📊 Dashboard
+                    Dashboard
                 </a>
                 <a href="{{ route('locations.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                    📍 Locaties
+                    Locaties
                 </a>
                 <a href="{{ route('emergency.index') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                    🚨 Noodmelding
+                    Noodmelding
                 </a>
                 <a href="{{ route('settings.profile') }}" class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
-                    👤 Instellingen
+                    Instellingen
                 </a>
             </div>
         </div>

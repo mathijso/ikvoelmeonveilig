@@ -4,7 +4,7 @@
         <div class="flex justify-between items-center">
             <div>
                 <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
-                    📍 Mijn Locaties
+                    Mijn Locaties
                 </h1>
                 <p class="text-gray-600 dark:text-gray-300 mt-2">
                     Beheer je belangrijke locaties zoals thuis, werk en andere plekken
@@ -168,12 +168,12 @@
                             <div class="flex items-center space-x-4">
                                 <div class="flex-shrink-0">
                                     @if($location->is_primary)
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                            🏠 Primaire
+                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                            Primaire
                                         </span>
                                     @else
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                                            📍 Locatie
+                                            Locatie
                                         </span>
                                     @endif
                                 </div>
@@ -197,36 +197,46 @@
                                 <!-- Toggle Primary -->
                                 <button 
                                     wire:click="togglePrimary({{ $location->id }})"
-                                    class="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                                     title="{{ $location->is_primary ? 'Verwijder primaire status' : 'Maak primaire locatie' }}"
                                 >
                                     @if($location->is_primary)
-                                        🏠
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                        </svg>
                                     @else
-                                        🏘️
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                                        </svg>
                                     @endif
                                 </button>
 
                                 <!-- Toggle Active -->
                                 <button 
                                     wire:click="toggleActive({{ $location->id }})"
-                                    class="p-2 text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors"
+                                    class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                                     title="{{ $location->is_active ? 'Deactiveren' : 'Activeren' }}"
                                 >
                                     @if($location->is_active)
-                                        ✅
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
                                     @else
-                                        ❌
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
                                     @endif
                                 </button>
 
                                 <!-- Edit -->
                                 <button 
                                     wire:click="showEditForm({{ $location->id }})"
-                                    class="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                    class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                                     title="Bewerken"
                                 >
-                                    ✏️
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                    </svg>
                                 </button>
 
                                 <!-- Delete -->
@@ -236,7 +246,9 @@
                                     class="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
                                     title="Verwijderen"
                                 >
-                                    🗑️
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -252,7 +264,9 @@
             @endif
         @else
             <div class="p-12 text-center">
-                <span class="text-6xl mb-4 block">📍</span>
+                <svg class="w-16 h-16 text-gray-400 dark:text-gray-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
                     Nog geen locaties
                 </h3>
@@ -261,7 +275,7 @@
                 </p>
                 <button 
                     wire:click="showAddForm"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                    class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 >
                     + Locatie Toevoegen
                 </button>
