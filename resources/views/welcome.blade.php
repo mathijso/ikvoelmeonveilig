@@ -31,6 +31,9 @@
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">
+                        <a href="{{ route('explanation.index') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium">
+                            Hoe werkt het?
+                        </a>
                         @auth
                             <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium">
                                 Dashboard
@@ -124,7 +127,25 @@
             </div>
         </div>
 
-       
+        <!-- Learn More Section -->
+        <div class="bg-gray-50 dark:bg-gray-900 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                        Wil je meer weten?
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        Lees meer over waarom we dit systeem hebben gemaakt en hoe het vrouwen helpt zich veiliger te voelen op straat.
+                    </p>
+                </div>
+                
+                <div class="text-center">
+                    <a href="{{ route('explanation.index') }}" class="inline-flex items-center px-8 py-4 bg-white dark:bg-gray-800 text-red-600 dark:text-red-400 border-2 border-red-600 dark:border-red-400 text-lg font-semibold rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors shadow-lg">
+                        📖 Lees de volledige uitleg
+                    </a>
+                </div>
+            </div>
+        </div>
 
         <!-- CTA Section -->
         <div class="bg-red-600 dark:bg-red-700 py-16">

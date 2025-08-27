@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/uitleg', [App\Http\Controllers\ExplanationController::class, 'index'])->name('explanation.index');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/emergency', function () {
         return view('emergency.index');
